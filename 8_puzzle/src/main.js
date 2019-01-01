@@ -2,8 +2,8 @@ import Bootloader from './Bootloader.js';
 
 const config = {
     title: "8_puzzle",
-    width: 360,
-    height: 640,
+    width: 180,
+    height: 320,
     type: Phaser.AUTO,
     parent: "container",
     backgroundColor: "#22a6b3",
