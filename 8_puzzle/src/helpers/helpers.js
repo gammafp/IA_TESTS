@@ -11,9 +11,27 @@ const oneToBi = (array) => {
     }, [[]]);
 
     return aut;
+};
+
+// Encontramos la posición bi-dimensional en base a un número en la matriz 3x3
+const findBi = (num) => {
+    let xValor = 0;
+    let yValor = 0;
+    let aux = 1;
+
+    while(aux != num){
+        xValor++;
+        if(xValor > 2){
+            xValor = 0;
+            yValor++;
+        }
+        aux++;
+    }
+    
+    return {x: xValor, y: yValor}
 }
 
 // Obtenemos el indice de la pieza.
 const getIndex = (array, name) => array.findIndex(x => x.name === name);
 
-export default { oneToBi, getIndex };
+export default {oneToBi, getIndex, findBi};
