@@ -24,25 +24,13 @@ class Play extends Phaser.Scene {
 
         this.piezas.push(this.physics.add.sprite(this.sys.game.config.width/2 - 32, 80 + 32, 'piezas', 'piezas_7').setName('pieza_7'));
         this.piezas.push(this.physics.add.sprite(this.sys.game.config.width/2, 80 + 32, 'piezas', 'piezas_8').setName('pieza_8').setInteractive());
-        this.piezas.push(this.add.sprite(this.sys.game.config.width/2 + 32, 80 + 32, 'piezas', 'piezas_9').setName('pieza_9'));
-
-        console.log(helpers.oneToBi(this.piezas));
-
-        console.log(1)
-        console.log(helpers.findBi(1));
-        console.log(3)
-        console.log(helpers.findBi(3));
-        console.log(5)
-        console.log(helpers.findBi(5));
-        console.log(8)
-        console.log(helpers.findBi(8));
-        
+        this.piezas.push(this.add.sprite(this.sys.game.config.width/2 + 32, 80 + 32, 'piezas', 'piezas_9').setName('vacio'));     
 
         this.input.setDraggable(this.piezas[7]);
 
         this.input.on('gameobjectdown', function (pointer, gameObject) {
 
-            console.log(helpers.getIndex(this.piezas, gameObject.name));
+            console.log(helpers.checkCollition(7, this.piezas));
             gameObject.setTint(0x00ff00);
     
         }, this);
