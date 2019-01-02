@@ -1,4 +1,8 @@
-// Convierte array unidimensional a array bi-dimensional (refactorizar si se gusta)
+/**
+ * Convierte array unidimensional a array bi-dimensional (refactorizar si se gusta)
+ * @param {Array} array 
+ * @return {Array} Array Bi
+ */
 const oneToBi = (array) => {
     let y = 0;
     let aut = array.reduce((prev, current, i) => {
@@ -14,7 +18,11 @@ const oneToBi = (array) => {
     return aut;
 };
 
-// Encontramos la posición bi-dimensional en base a un número en la matriz 3x3
+/**
+ * Encontramos la posición bi-dimensional en base a un número en la matriz 3x3
+ * @param {Number} index 
+ * @return \{x: number, y: number}
+ */
 const findBi = (index) => {
     return {
         x: index % 3,
@@ -22,15 +30,32 @@ const findBi = (index) => {
     }
 }
 
-//Intercambio de 2 elementos en un arreglo
+/**
+ * Intercambio de 2 elementos en un arreglo
+ * @param {Number} indexA
+ * @param {Number} indexB 
+ * @param {Array} array 
+ * @return {Array} Array
+ */
 const swap = (indexA, indexB, array) => {
     [array[indexA], array[indexB]] = [array[indexB], array[indexA]]
     return array;
 }
 
-// Obtenemos el indice de la pieza.
+/**
+ * Obtenemos el indice de la pieza.
+ * @param {Array} array - El array entero
+ * @param {string} name - Nombre de la pieza
+ * @return Number
+ */
 const getIndex = (array, name) => array.findIndex(x => x.name === name);
 
+/**
+ * Comprueba si las piezas están en colisión con las piezas colindantes.
+ * @param {Number} index - Indice de la pieza
+ * @param {Array} array - El array entero de las piezas [0, 1, 2, ..., 8]
+ * @return {up: Boolean, down: Boolean, left: Boolean, right: Boolean}
+ */
 const checkCollition = (index, array) => {
     const indexBi = findBi(index);
     const biArray = oneToBi(array);
