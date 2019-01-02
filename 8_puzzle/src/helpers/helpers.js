@@ -13,21 +13,11 @@ const oneToBi = (array) => {
     return aut;
 };
 
-// Encontramos la posición bi-dimensional en base a un número en la matriz 3x3
+// Encontramos la posición bi-dimensional en base a un número en la matriz 3x3 ()
 const findBi = (num) => {
-    let xValor = 0;
-    let yValor = 0;
-    let aux = 1;
+    let xValor = Math.floor(num/3);
+    let yValor = num - xValor*3;
 
-    while(aux != num){
-        xValor++;
-        if(xValor > 2){
-            xValor = 0;
-            yValor++;
-        }
-        aux++;
-    }
-    
     return {x: xValor, y: yValor}
 }
 

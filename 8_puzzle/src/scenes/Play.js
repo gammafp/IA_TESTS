@@ -28,6 +28,16 @@ class Play extends Phaser.Scene {
 
         console.log(helpers.oneToBi(this.piezas));
 
+        console.log(1)
+        console.log(helpers.findBi(1));
+        console.log(3)
+        console.log(helpers.findBi(3));
+        console.log(5)
+        console.log(helpers.findBi(5));
+        console.log(8)
+        console.log(helpers.findBi(8));
+        
+
         this.input.setDraggable(this.piezas[7]);
 
         this.input.on('gameobjectdown', function (pointer, gameObject) {
