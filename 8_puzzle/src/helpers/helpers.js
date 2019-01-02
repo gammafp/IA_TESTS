@@ -14,12 +14,18 @@ const oneToBi = (array) => {
     return aut;
 };
 
-// Encontramos la posición bi-dimensional en base a un número en la matriz 3x3 ()
+// Encontramos la posición bi-dimensional en base a un número en la matriz 3x3
 const findBi = (index) => {
     return {
         x: index % 3,
         y: Math.floor(index / 3)
     }
+}
+
+//Intercambio de 2 elementos en un arreglo
+const swap = (indexA, indexB, array) => {
+    [array[indexA], array[indexB]] = [array[indexB], array[indexA]]
+    return array;
 }
 
 // Obtenemos el indice de la pieza.
@@ -42,5 +48,6 @@ export default {
     oneToBi,
     getIndex,
     findBi,
-    checkCollition
+    checkCollition,
+    swap
 };
