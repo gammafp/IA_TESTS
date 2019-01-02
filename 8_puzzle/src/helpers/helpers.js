@@ -34,12 +34,12 @@ const getIndex = (array, name) => array.findIndex(x => x.name === name);
 const checkCollition = (index, array) => {
     const indexBi = findBi(index);
     const biArray = oneToBi(array);
-
+  
     const colision = {
         up: (biArray[indexBi.y - 1] === undefined || biArray[indexBi.y - 1][indexBi.x].name != 'vacio') ? true : false,
         down: (biArray[indexBi.y + 1] === undefined || biArray[indexBi.y + 1][indexBi.x].name != 'vacio') ? true : false,
-        left: (biArray[indexBi.y] === undefined || biArray[indexBi.y][indexBi.x - 1].name != 'vacio') ? true : false,
-        right: (biArray[indexBi.y] === undefined || biArray[indexBi.y][indexBi.x + 1].name != 'vacio') ? true : false,
+        left: (biArray[indexBi.y][indexBi.x - 1] === undefined || biArray[indexBi.y][indexBi.x - 1].name != 'vacio') ? true : false,
+        right: (biArray[indexBi.y][indexBi.x + 1] === undefined || biArray[indexBi.y][indexBi.x + 1].name != 'vacio') ? true : false,
     };
     return colision;
 }
