@@ -89,9 +89,6 @@ class Piezas {
                     }
                 }
             }
-
-
-
         });
 
         this.scene.input.on('dragend', (pointer, gameObject) => {
@@ -111,7 +108,11 @@ class Piezas {
                 gameObject.y = lastPos.y;
             }
             gameObject.clearTint();
-
+            if(helpers.win(this.piezas)){
+                console.log('Puzzle resuelto')
+            }else{
+                console.log('No resuelto')
+            }
         }, this);
     }
 }

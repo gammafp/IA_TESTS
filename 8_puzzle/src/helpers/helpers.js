@@ -69,10 +69,27 @@ const checkCollition = (index, array) => {
     return colision;
 }
 
+/**
+ * Comprueba si las piezas están en la posición del resultado del puzzle.
+ * @param {Array} array - El array entero de las piezas [0, 1, 2, ..., 8]
+ * @return {boolean}
+ */
+
+const win = (array) => {
+    let result = true
+    for(let i=0; i<8; i++){
+        if( ('pieza_' + (i+1).toString()) !== array[i].name){
+            result = false;
+        }
+    }
+    return result
+}
+
 export default {
     oneToBi,
     getIndex,
     findBi,
     checkCollition,
-    swap
+    swap,
+    win
 };
