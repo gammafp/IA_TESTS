@@ -108,13 +108,93 @@ class Piezas {
                 gameObject.y = lastPos.y;
             }
             gameObject.clearTint();
-            if(helpers.win(this.piezas)){
+            if (helpers.win(this.piezas)) {
                 console.log('Puzzle resuelto')
-            }else{
+            } else {
                 console.log('No resuelto')
             }
         }, this);
     }
+    up() {
+        const indexVacio = helpers.getIndex(this.piezas, 'vacio');
+        const indexVacioBi = helpers.findBi(indexVacio);
+        const piezasBi = helpers.oneToBi(this.piezas);
+
+        const collision = helpers.checkCollitionIA(indexVacio, this.piezas);
+        if (!collision.up) {
+            const indexPieceToMove = helpers.getIndex(this.piezas, piezasBi[indexVacioBi.y - 1][indexVacioBi.x].name);
+
+            // TODO: Aplicar catmull/lerp
+
+            // Pieza a mover
+            piezasBi[indexVacioBi.y - 1][indexVacioBi.x].y += 32;
+            // Vacio
+            piezasBi[indexVacioBi.y][indexVacioBi.x].y -= 32;
+
+            helpers.swap(indexPieceToMove, indexVacio, this.piezas);
+        }
+    }
+    down() {
+        const indexVacio = helpers.getIndex(this.piezas, 'vacio');
+        const indexVacioBi = helpers.findBi(indexVacio);
+        const piezasBi = helpers.oneToBi(this.piezas);
+
+        const collision = helpers.checkCollitionIA(indexVacio, this.piezas);
+        if (!collision.down) {
+            const indexPieceToMove = helpers.getIndex(this.piezas, piezasBi[indexVacioBi.y + 1][indexVacioBi.x].name);
+
+            // TODO: Aplicar catmull/lerp
+
+            // Pieza a mover
+            piezasBi[indexVacioBi.y + 1][indexVacioBi.x].y -= 32;
+            // Vacio
+            piezasBi[indexVacioBi.y][indexVacioBi.x].y += 32;
+
+            helpers.swap(indexPieceToMove, indexVacio, this.piezas);
+        }
+    }
+    left() {
+        const indexVacio = helpers.getIndex(this.piezas, 'vacio');
+        const indexVacioBi = helpers.findBi(indexVacio);
+        const piezasBi = helpers.oneToBi(this.piezas);
+
+        const collision = helpers.checkCollitionIA(indexVacio, this.piezas);
+
+        if (!collision.left) {
+            const indexPieceToMove = helpers.getIndex(this.piezas, piezasBi[indexVacioBi.y][indexVacioBi.x - 1].name);
+
+            // TODO: Aplicar catmull/lerp
+
+            // Pieza a mover
+            piezasBi[indexVacioBi.y][indexVacioBi.x - 1].x += 32;
+            // vacio
+            piezasBi[indexVacioBi.y][indexVacioBi.x].x -= 32;
+
+            helpers.swap(indexPieceToMove, indexVacio, this.piezas);
+        }
+    }
+    right() {
+        const indexVacio = helpers.getIndex(this.piezas, 'vacio');
+        const indexVacioBi = helpers.findBi(indexVacio);
+        const piezasBi = helpers.oneToBi(this.piezas);
+
+        const collision = helpers.checkCollitionIA(indexVacio, this.piezas);
+
+        if (!collision.right) {
+            const indexPieceToMove = helpers.getIndex(this.piezas, piezasBi[indexVacioBi.y][indexVacioBi.x + 1].name);
+
+            // TODO: Aplicar catmull/lerp
+
+            // Pieza a mover
+            piezasBi[indexVacioBi.y][indexVacioBi.x + 1].x -= 32;
+
+            // Vacio
+            piezasBi[indexVacioBi.y][indexVacioBi.x].x += 32;
+
+            helpers.swap(indexPieceToMove, indexVacio, this.piezas);
+        }
+    }
+
 }
 
 export default Piezas;

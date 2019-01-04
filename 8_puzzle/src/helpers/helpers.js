@@ -28,7 +28,7 @@ const findBi = (index) => {
         x: index % 3,
         y: Math.floor(index / 3)
     }
-}
+};
 
 /**
  * Intercambio de 2 elementos en un arreglo
@@ -69,6 +69,19 @@ const checkCollition = (index, array) => {
     return colision;
 }
 
+const checkCollitionIA = (index, array) => {
+    const indexBi = findBi(index);
+    const biArray = oneToBi(array);
+  
+    const colision = {
+        up: (biArray[indexBi.y - 1] === undefined) ? true : false,
+        down: (biArray[indexBi.y + 1] === undefined) ? true : false,
+        left: (biArray[indexBi.y][indexBi.x - 1] === undefined) ? true : false,
+        right: (biArray[indexBi.y][indexBi.x + 1] === undefined) ? true : false,
+    };
+    return colision;
+}
+
 /**
  * Comprueba si las piezas están en la posición del resultado del puzzle.
  * @param {Array} array - El array entero de las piezas [0, 1, 2, ..., 8]
@@ -90,6 +103,7 @@ export default {
     getIndex,
     findBi,
     checkCollition,
+    checkCollitionIA,
     swap,
     win
 };
