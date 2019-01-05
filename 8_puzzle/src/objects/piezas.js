@@ -132,6 +132,7 @@ class Piezas {
             piezasBi[indexVacioBi.y][indexVacioBi.x].y -= 32;
 
             helpers.swap(indexPieceToMove, indexVacio, this.piezas);
+            return true;
         }
     }
     down() {
@@ -151,6 +152,7 @@ class Piezas {
             piezasBi[indexVacioBi.y][indexVacioBi.x].y += 32;
 
             helpers.swap(indexPieceToMove, indexVacio, this.piezas);
+            return true;
         }
     }
     left() {
@@ -171,6 +173,7 @@ class Piezas {
             piezasBi[indexVacioBi.y][indexVacioBi.x].x -= 32;
 
             helpers.swap(indexPieceToMove, indexVacio, this.piezas);
+            return true;
         }
     }
     right() {
@@ -192,6 +195,7 @@ class Piezas {
             piezasBi[indexVacioBi.y][indexVacioBi.x].x += 32;
 
             helpers.swap(indexPieceToMove, indexVacio, this.piezas);
+            return true;
         }
     }
 
