@@ -1,3 +1,4 @@
+import Restart from './scenes/Restart.js';
 import Play from './scenes/Play.js';
 import Bootloader from './Bootloader.js';
 
@@ -18,7 +19,7 @@ const config = {
             debug: true
         }
     },
-    scene: [Bootloader, Play]
+    scene: [Bootloader, Play, Restart]
 };
 
 new Phaser.Game(config);
