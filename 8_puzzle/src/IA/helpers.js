@@ -98,7 +98,7 @@ const win = (array) => {
     return result
 }
 
-const exportar = {
+module.exports = {
     oneToBi,
     getIndex,
     findBi,
@@ -107,5 +107,3 @@ const exportar = {
     swap,
     win
 };
-
-export default exportar;
