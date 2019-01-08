@@ -34,12 +34,22 @@ class Play extends Phaser.Scene {
         });
 
         this.input.keyboard.on('keydown_R', () => {
-            let n = 0, dir = ["this.piezas.up()", "this.piezas.down()", "this.piezas.left()", "this.piezas.right()"];
-            
-            while (n < 30){
-                if(eval(dir[Math.floor(Math.random()*4)])){
-                    n++
-                };
+            let n = 0, dir = ["up", "down", "right", "left"];
+            while(n < 30){
+                switch(dir[Math.floor(Math.random()*4)]){
+                    case "up":
+                        if(this.piezas.up()) n++;
+                        break;
+                    case "down":
+                        if(this.piezas.down()) n++;
+                        break;
+                    case "right":
+                        if(this.piezas.right()) n++;
+                        break;
+                    case "left":
+                        if(this.piezas.left()) n++;
+                        break;
+                }
             }
         });
     }
