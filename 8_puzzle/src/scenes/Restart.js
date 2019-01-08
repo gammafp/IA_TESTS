@@ -5,7 +5,7 @@ class Restart extends Phaser.Scene {
     }
     
     preload() {
-        console.log('Scene: Restart');
+        this.scene.start('Play');
     }
 
     create() {
