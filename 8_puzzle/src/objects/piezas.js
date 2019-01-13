@@ -108,7 +108,7 @@ class Piezas {
                 gameObject.y = lastPos.y;
             }
             gameObject.clearTint();
-            if (helpers.win(this.piezas)) {
+            if (this.getWin()) {
                 console.log('Puzzle resuelto')
             } else {
                 console.log('No resuelto')
@@ -197,6 +197,19 @@ class Piezas {
             helpers.swap(indexPieceToMove, indexVacio, this.piezas);
             return true;
         }
+    }
+    getPiezas() {
+        const convertirPieza = R.compose(
+            parseInt,
+            R.replace('vacio', 0, R.__),
+            R.replace('pieza_', '', R.__)
+        );
+        const outPiezas = this.piezas.map((x) => convertirPieza(x.name));
+        return helpers.oneToBi(outPiezas);
+    }
+
+    getWin() {
+        return helpers.win(this.piezas);
     }
 
 }
