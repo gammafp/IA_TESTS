@@ -61,17 +61,16 @@ class Play extends Phaser.Scene {
                             clearInterval(intervalo);
                             console.log('Solucionado');
                         }
-                    }, 200);
+                    }, 150);
                 });
 
             }
         });
 
-
         this.input.keyboard.on('keydown_R', () => {
             let n = 0,
                 dir = ["up", "down", "right", "left"];
-            while (n < 30) {
+            while (n < 3000) {
                 switch (dir[Math.floor(Math.random() * 4)]) {
                     case "up":
                         if (this.piezas.up()) n++;
