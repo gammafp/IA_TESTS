@@ -14,6 +14,7 @@ class Play extends Phaser.Scene {
 
     create() {
         const ia = new IA();
+        let resolviendo = false;
 
         this.add.image(this.sys.game.config.width / 2, 80, 'marco_piezas');
         this.piezas = new Piezas(this);
@@ -36,9 +37,8 @@ class Play extends Phaser.Scene {
         });
         // Resolver
         this.input.keyboard.on('keydown_I', () => {
-            if (this.piezas.getWin()) {
-                console.log('Ya está resuelto');
-            } else {
+            if (!this.piezas.getWin() && !resolviendo) {
+                resolviendo = true;
                 ia.find(this.piezas.getPiezas(), (rutaSolucion) => {
                     const intervalo = setInterval(() => {
                         const solucion = rutaSolucion.next().value;
@@ -59,7 +59,8 @@ class Play extends Phaser.Scene {
                             }
                         } else {
                             clearInterval(intervalo);
-                            console.log('Solucionado');
+                            resolviendo = false;
+                            alert('Solucionado');
                         }
                     }, 150);
                 });
@@ -70,7 +71,7 @@ class Play extends Phaser.Scene {
         this.input.keyboard.on('keydown_R', () => {
             let n = 0,
                 dir = ["up", "down", "right", "left"];
-            while (n < 3000) {
+            while (n < 300) {
                 switch (dir[Math.floor(Math.random() * 4)]) {
                     case "up":
                         if (this.piezas.up()) n++;
@@ -86,11 +87,10 @@ class Play extends Phaser.Scene {
                         break;
                 }
             }
+        
         });
-    }
-
-    update() {
-
+        this.add.text(this.sys.game.config.width/2, 15, 'Hill Climb', {textColor: 0xffffff}).setOrigin(0.5);
+        this.add.text(this.sys.game.config.width/2, 170, 'Controles:\n·R:Remover puzzle\n·I:Resolver', {textColor: 0xffffff}).setOrigin(0.5);
     }
 }
 
