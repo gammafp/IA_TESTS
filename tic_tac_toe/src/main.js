@@ -7,7 +7,7 @@ const config = {
     height: 220,
     type: Phaser.AUTO,
     parent: "container",
-    backgroundColor: "#c7ecee",
+    backgroundColor: "#372538",
     pixelArt: true,
     physics: {
         default: "arcade",
