@@ -4,14 +4,20 @@ class Bootloader extends Phaser.Scene {
     }
 
     preload() {
-        console.log('Bootloader :D');
         this.load.path = './assets/';
+        this.load.image('tablero');
+        this.load.image('equis');
+        this.load.image('cero');
+        this.load.image('equis_opaco');
+        this.load.image('cero_opaco');
+        this.load.image('position');
 
-        this.load.image('logo_gamma', 'logo_gamma.png');
+        this.load.on('complete', () => {
+            this.scene.start('Play');
+        });
     }
 
     create() {
-        this.add.image(this.sys.game.config.width/2, this.sys.game.config.height/2, 'logo_gamma');
     }
 }
 export default Bootloader;
