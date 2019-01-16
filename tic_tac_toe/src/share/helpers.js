@@ -1,7 +1,7 @@
 import share from './share.js';
 // ['position', `${share.db.jugadorActual}_opaco`, share.db.jugadorActual]
 const createButton = (buttonSprite, scene, frames, callback) => {
-    buttonSprite.on('pointerover', () => {        
+    buttonSprite.on('pointerover', () => {
         buttonSprite.frame = scene.textures.getFrame(`${share.db.jugadorActual}_opaco`);
     });
     buttonSprite.on('pointerdown', () => {
@@ -18,6 +18,91 @@ const createButton = (buttonSprite, scene, frames, callback) => {
         buttonSprite.removeInteractive();
         callback(buttonSprite);
     });
-} 
+}
 
-export default { createButton };
+/**
+ * Encontramos la posición bi-dimensional en base a un número en la matriz 3x3
+ * @param {Number} index 
+ * @return \{x: number, y: number}
+ */
+const findNumberBi = (index) => ({
+    x: index % 3,
+    y: Math.floor(index / 3)
+});
+
+const findNumberOne = (indexX, indexY) => (indexY*3 + indexX);
+
+const win = (tablero, turno) => {
+    let output = {
+        win: false
+    };
+    // Horizontal
+    if (R.all(R.equals(turno), [tablero[0][0], tablero[0][1], tablero[0][2]])) {
+        output = {
+            win: true,
+            type: 'horizontal',
+            pos: 0
+        }
+    }
+    if (R.all(R.equals(turno), [tablero[1][0], tablero[1][1], tablero[1][2]])) {
+        output = {
+            win: true,
+            type: 'horizontal',
+            pos: 1
+        }
+    }
+    if (R.all(R.equals(turno), [tablero[2][0], tablero[2][1], tablero[2][2]])) {
+        output = {
+            win: true,
+            type: 'horizontal',
+            pos: 2
+        }
+    }
+
+    // Vertical
+    if (R.all(R.equals(turno), [tablero[0][0], tablero[1][0], tablero[2][0]])) {
+        output = {
+            win: true,
+            type: 'vertical',
+            pos: 0
+        }
+    }
+    if (R.all(R.equals(turno), [tablero[0][1], tablero[1][1], tablero[2][1]])) {
+        output = {
+            win: true,
+            type: 'vertical',
+            pos: 1
+        }
+    }
+    if (R.all(R.equals(turno), [tablero[0][2], tablero[1][2], tablero[2][2]])) {
+        output = {
+            win: true,
+            type: 'vertical',
+            pos: 2
+        }
+    }
+
+    // Diagonal
+    if (R.all(R.equals(turno), [tablero[0][0], tablero[1][1], tablero[2][2]])) {
+        output = {
+            win: true,
+            type: 'diagonal',
+            pos: 0
+        }
+    }
+    if (R.all(R.equals(turno), [tablero[0][2], tablero[1][1], tablero[2][0]])) {
+        output = {
+            win: true,
+            type: 'diagonal',
+            pos: 1
+        }
+    }
+    return output;
+}
+
+export default {
+    createButton,
+    findNumberBi,
+    win,
+    findNumberOne
+};

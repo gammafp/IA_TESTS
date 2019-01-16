@@ -11,7 +11,7 @@ class Bootloader extends Phaser.Scene {
         this.load.image('equis_opaco');
         this.load.image('cero_opaco');
         this.load.image('position');
-
+        this.load.atlas('barras', 'barras.png', 'barras_atlas.json');
         this.load.on('complete', () => {
             this.scene.start('Play');
         });
