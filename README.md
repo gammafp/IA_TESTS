@@ -4,12 +4,12 @@ Consiste en crear dinstintos juegos para usar distintos algoritmos e ir probando
 
 --- 
 ### Lista de juegos para implementar los algoritmos: 
-- 8-puzzle - Hill Climb - (Finalizado)
+- 8-puzzle - Hill Climb - (Finalizado) - [DEMO](https://gammafp.github.io/IA_TESTS/8_puzzle/)
     - Controles: 
         - Para remover el puzzle se presiona la "r"
         - Para resolver el puzzle con hill climb se presiona "i"
         - 8-puzzle (Hill climb) - Finalizado
-- TIC-TAC-TOE (OXO, Tres en raya) - Mini-Max - (Siguiente): 
+- TIC-TAC-TOE (OXO, Tres en raya) - Mini-Max - (Finalizado) - [DEMO](https://gammafp.github.io/IA_TESTS/tic_tac_toe/)
     - Para remover el puzzle se presiona la "r"
     - Para resolver el puzzle con hill climb se presiona "i"
 
