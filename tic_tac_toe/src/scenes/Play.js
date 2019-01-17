@@ -46,6 +46,12 @@ class Play extends Phaser.Scene {
             this.add.image(this.sys.game.config.width / 2, this.sys.game.config.height / 2 + 48, 'position').setInteractive(),
             this.add.image(this.sys.game.config.width / 2 + 48, this.sys.game.config.height / 2 + 48, 'position').setInteractive()
         ];
+        const reload = this.add.image(this.sys.game.config.width - 20, this.sys.game.config.height - 20, 'reload').setInteractive();
+        
+        reload.on('pointerup', () => {
+            share.restartDB();
+            this.scene.start('Restart');
+        });
 
         // console.log(Phaser.Math.Matrix3.fromArray(share.db.partidaActual));
         this.texto = this.add.text(20, 5, 'Turno de');
@@ -53,26 +59,26 @@ class Play extends Phaser.Scene {
         // Deshabilitar los botones si es el primer turno del contrario
         if (this.turno != this.cambiaPieza) {
             this.texto.setText(
-                `PC\njuega con ${(this.cambiaPieza) ? 'X' : 'O'}`
+                `PC`
             );
             this.ocultarBotones();
             this.pintarPC(Phaser.Math.Between(0, 8), IAMini.PC, () => {
                 this.mostrarBotones();
                 share.db.jugadorActual = this.cambioTurno();
                 this.texto.setText(
-                    `JUGADOR\njuega con ${(this.cambiaPieza) ? 'X' : '0'}`
+                    `JUGADOR`
                 );
             });
         } else {
             this.texto.setText(
-                `JUGADOR\njuega con ${(this.cambiaPieza) ? 'X' : '0'}`
+                `JUGADOR`
             );
         }
 
         this.buttons.map((x, i) => {
             helpers.createButton(x, this, [], (e) => {
                 this.texto.setText(
-                    `PC\njuega con ${(this.cambiaPieza) ? 'X' : '0'}`
+                    `PC`
                 );
 
                 share.db.partidaActual[helpers.findNumberBi(i).y][helpers.findNumberBi(i).x] = (this.cambiaPieza) ? 1 : 0;
@@ -113,7 +119,7 @@ class Play extends Phaser.Scene {
 
                                 share.db.jugadorActual = this.cambioTurno();
                                 this.texto.setText(
-                                    `JUGADOR\njuega con ${(this.cambiaPieza) ? 'X' : '0'}`
+                                    `JUGADOR`
                                 );
                             });
                         });

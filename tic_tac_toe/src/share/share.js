@@ -7,4 +7,12 @@ const db = {
     ]
 };
 
-export default {db};
+const restartDB = () => {
+    db.partidaActual = [
+            [-1, -1, -1],
+            [-1, -1, -1],
+            [-1, -1, -1]
+        ]
+}
+
+export default {db, restartDB};
