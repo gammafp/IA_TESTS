@@ -1,38 +1,25 @@
-import share from './share.js';
-// ['position', `${share.db.jugadorActual}_opaco`, share.db.jugadorActual]
-const createButton = (buttonSprite, scene, frames, callback) => {
-    buttonSprite.on('pointerover', () => {
-        buttonSprite.frame = scene.textures.getFrame(`${share.db.jugadorActual}_opaco`);
-    });
-    buttonSprite.on('pointerdown', () => {
-        buttonSprite.frame = scene.textures.getFrame(share.db.jugadorActual);
-    });
-    buttonSprite.on('touchout', () => {
-        alert('Funcionaaa');
-    })
-    buttonSprite.on('pointerout', () => {
-        buttonSprite.frame = scene.textures.getFrame('position');
-    });
-    buttonSprite.on('pointerup', (a) => {
-        buttonSprite.frame = scene.textures.getFrame(share.db.jugadorActual);
-        buttonSprite.removeInteractive();
-        callback(buttonSprite);
-    });
-}
+const oneToBi = (array) => {
+    let y = 0;
+    let aut = array.reduce((prev, current, i) => {
+        y = (i % 3 === 0) ? y + 1 : y;
+        prev[y - 1] = (prev[y - 1] === undefined) ? [] : prev[y - 1];
 
-/**
- * Encontramos la posición bi-dimensional en base a un número en la matriz 3x3
- * @param {Number} index 
- * @return \{x: number, y: number}
- */
+        prev[y - 1].push(current);
+        return prev;
+    }, [
+        []
+    ]);
+
+    return aut;
+};
+
 const findNumberBi = (index) => ({
     x: index % 3,
     y: Math.floor(index / 3)
 });
 
-const findNumberOne = (indexX, indexY) => (indexY*3 + indexX);
-
-const win = (tablero, turno) => {
+const win = (tableroIN, turno) => {
+    const tablero = oneToBi(tableroIN);
     let output = {
         win: 0
     };
@@ -106,8 +93,7 @@ const win = (tablero, turno) => {
 }
 
 export default {
-    createButton,
-    findNumberBi,
+    oneToBi,
     win,
-    findNumberOne
+    findNumberBi
 };
